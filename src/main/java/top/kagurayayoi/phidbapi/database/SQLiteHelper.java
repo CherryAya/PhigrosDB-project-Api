@@ -40,7 +40,7 @@ public class SQLiteHelper {
         }
         Class.forName("org.sqlite.JDBC");
         conn = DriverManager.getConnection("jdbc:sqlite://"+dbpath);
-        this.state = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+        this.state = conn.createStatement();
         this.state.setQueryTimeout(30);
         return this.state;
     }
@@ -135,7 +135,7 @@ public class SQLiteHelper {
             else
                 sqlCommand += " " + From + " " + fromTableName;
         }
-        if (!whereCondition.equals(null))
+        if (whereCondition!=null)
             sqlCommand += " " + Where + " " + whereCondition + ";";
         else
             sqlCommand += ";";
@@ -144,7 +144,7 @@ public class SQLiteHelper {
     }
 
     // Retrieve
-    private ResultSet select(String tableName, String[] columnName, @Nullable String whereCondition) throws Exception {
+    public ResultSet select(String tableName, String[] columnName, @Nullable String whereCondition) throws Exception {
         this.check();
         sqlCommand = command_Select + " ";
         for (int i = 0; i < columnName.length; i++) {
@@ -154,7 +154,7 @@ public class SQLiteHelper {
             else
                 sqlCommand += " " + From + " " + tableName;
         }
-        if (!whereCondition.equals(null))
+        if (whereCondition!=null)
             sqlCommand += " " + Where + " " + whereCondition + ";";
         else
             sqlCommand += ";";
@@ -162,10 +162,10 @@ public class SQLiteHelper {
         return this.resultSet;
     }
 
-    private ResultSet selectAll(String tableName, @Nullable String whereCondition) throws SQLException {
+    public ResultSet selectAll(String tableName, @Nullable String whereCondition) throws SQLException {
         this.check();
         sqlCommand = command_SelectAll + " " + From + " " + tableName;
-        if (!whereCondition.equals(null))
+        if (whereCondition!=null)
             sqlCommand += " " + Where + " " + whereCondition + ";";
         else
             sqlCommand += ";";
@@ -174,7 +174,7 @@ public class SQLiteHelper {
     }
 
     // Update
-    private boolean update(String tableName, String[] columnName, Object[] values,
+    public boolean update(String tableName, String[] columnName, Object[] values,
                            @Nullable String whereCondition) throws Exception {
         this.check();
         sqlCommand = command_Update + " " + tableName + " " + Set + " ";
@@ -183,7 +183,7 @@ public class SQLiteHelper {
             if (i!=columnName.length-1)
                 sqlCommand += ",";
         }
-        if (!whereCondition.equals(null))
+        if (whereCondition!=null)
             sqlCommand += " " + Where + " " + whereCondition + ";";
         else
             sqlCommand += ";";
