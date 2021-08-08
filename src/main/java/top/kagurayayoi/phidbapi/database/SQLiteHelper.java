@@ -40,7 +40,7 @@ public class SQLiteHelper {
         }
         Class.forName("org.sqlite.JDBC");
         conn = DriverManager.getConnection("jdbc:sqlite://"+dbpath);
-        this.state = conn.createStatement();
+        this.state = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
         this.state.setQueryTimeout(30);
         return this.state;
     }
