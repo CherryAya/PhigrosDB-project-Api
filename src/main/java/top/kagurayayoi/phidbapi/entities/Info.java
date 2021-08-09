@@ -4,9 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Info extends BaseEntity{
 
-    public final static String[] columnName = new String[]
-            {"id", "Database_Version", "Author", "Phigros_Version",
-            "Total", "Reference", "Reference_Author"};
+    public final static String[] columnName = new String[]{"id", "Database_Version", "Author", "Phigros_Version", "Total", "Reference", "Reference_Author"};
     private String Database_Version;
     private String Author;
     private String Phigros_Version;
@@ -14,7 +12,7 @@ public class Info extends BaseEntity{
     private String Reference;
     private String Reference_Author;
 
-    @JsonProperty(index = 2)
+    @JsonProperty(index = 1)
     public String getDatabase_Version() {
         return Database_Version;
     }
@@ -23,7 +21,7 @@ public class Info extends BaseEntity{
         Database_Version = database_Version;
     }
 
-    @JsonProperty(index = 3)
+    @JsonProperty(index = 2)
     public String getAuthor() {
         return Author;
     }
