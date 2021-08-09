@@ -8,30 +8,29 @@ import org.springframework.web.bind.annotation.RestController;
 import top.kagurayayoi.phidbapi.conf.Setup;
 import top.kagurayayoi.phidbapi.database.SQLiteHelper;
 import top.kagurayayoi.phidbapi.entities.AjaxResult;
+import top.kagurayayoi.phidbapi.entities.ChapterList;
 import top.kagurayayoi.phidbapi.entities.ExceptionResult;
-import top.kagurayayoi.phidbapi.entities.Overview;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
 @RestController
-public class OverviewController {
-    @GetMapping("/Overview")
+public class ChapterListController {
+    @GetMapping("/ChapterList")
     @ResponseBody
-    public ResponseEntity<AjaxResult> Overview(){
+    public ResponseEntity<AjaxResult> ChapterList(){
         AjaxResult result = new AjaxResult();
         SQLiteHelper helper = new SQLiteHelper(Setup.database_path);
-        ArrayList<Overview> list = new ArrayList<>();
+        ArrayList<ChapterList> list = new ArrayList<>();
         try {
             helper.connection();
-            ResultSet rs = helper.select("main.Overview", Overview.columnName, null);
+            ResultSet rs = helper.select("main.ChapterList", ChapterList.columnName, null);
             while (rs.next()){
-                Overview overview = new Overview();
-                overview.setId(rs.getInt(Overview.columnName[0]));
-                overview.setChapter(rs.getString(Overview.columnName[1]));
-                overview.setName(rs.getString(Overview.columnName[2]));
-                overview.setVersion(rs.getString(Overview.columnName[3]));
-                overview.setAuthor(rs.getString(Overview.columnName[4]));
-                list.add(overview);
+                ChapterList chapterList = new ChapterList();
+                chapterList.setId(rs.getInt(ChapterList.columnName[0]));
+                chapterList.setName(rs.getString(ChapterList.columnName[1]));
+                chapterList.setTitle(rs.getString(ChapterList.columnName[2]));
+                chapterList.setTotal(rs.getString(ChapterList.columnName[3]));
+                list.add(chapterList);
             }
             result.setResultObj(list);
             helper.close();
