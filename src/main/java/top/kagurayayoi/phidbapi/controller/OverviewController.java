@@ -27,7 +27,7 @@ public class OverviewController {
         result.setLocation("/api/overview");
         try {
             helper.connection();
-            ResultSet rs = helper.select("main.Overview", Overview.columnName, null);
+            ResultSet rs = helper.selectAll("main.Overview", null);
             while (rs.next()){
                 Overview overview = new Overview();
                 overview.setId(rs.getInt(Overview.columnName[0]));

@@ -27,7 +27,7 @@ public class GradeController {
         result.setLocation("/api/grade");
         try {
             helper.connection();
-            ResultSet rs = helper.select("main.Grade", Grade.columnName, null);
+            ResultSet rs = helper.selectAll("main.Grade", null);
             while (rs.next()){
                 Grade grade = new Grade();
                 grade.setId(rs.getInt(Grade.columnName[0]));

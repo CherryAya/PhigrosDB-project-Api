@@ -28,7 +28,7 @@ public class DifficultyController {
         result.setLocation("/api/difficulty");
         try {
             helper.connection();
-            ResultSet rs = helper.select("main.Difficulty", Difficulty.columnName, null);
+            ResultSet rs = helper.selectAll("main.Difficulty", null);
             while (rs.next()){
                 Difficulty difficulty = new Difficulty();
                 difficulty.setId(rs.getInt(Difficulty.columnName[0]));

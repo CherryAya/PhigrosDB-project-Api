@@ -26,7 +26,7 @@ public class ChapterListController {
         this.Init();
         try {
             helper.connection();
-            ResultSet rs = helper.select("main.ChapterList", ChapterList.columnName, null);
+            ResultSet rs = helper.selectAll("main.ChapterList", null);
             while (rs.next()){
                 ChapterList chapterList = new ChapterList();
                 chapterList.setId(rs.getInt(ChapterList.columnName[0]));

@@ -25,7 +25,7 @@ public class InfoController {
         this.Init();
         try {
             helper.connection();
-            ResultSet rs = helper.select("main.Info", Info.columnName, null);
+            ResultSet rs = helper.selectAll("main.Info", null);
             while (rs.next()){
                 info.setId(rs.getInt(Info.columnName[0]));
                 info.setDatabase_Version(rs.getString(Info.columnName[1]));
