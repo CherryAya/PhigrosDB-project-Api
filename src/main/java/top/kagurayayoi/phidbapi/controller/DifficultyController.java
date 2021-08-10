@@ -5,37 +5,38 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
-import top.kagurayayoi.phidbapi.entities.AjaxResult;
-import top.kagurayayoi.phidbapi.database.SQLiteHelper;
 import top.kagurayayoi.phidbapi.conf.Setup;
+import top.kagurayayoi.phidbapi.database.SQLiteHelper;
+import top.kagurayayoi.phidbapi.entities.AjaxResult;
+import top.kagurayayoi.phidbapi.entities.Difficulty;
 import top.kagurayayoi.phidbapi.entities.ExceptionResult;
-import top.kagurayayoi.phidbapi.entities.Info;
+
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
 @RestController
-public class InfoController {
-    @GetMapping({"/", "/info", "/Info"})
+public class DifficultyController {
+    @GetMapping({"/Difficulty", "/difficulty"})
     @ResponseBody
-    public ResponseEntity<AjaxResult> Info() {
+    public ResponseEntity<AjaxResult> Difficulty(){
         AjaxResult result = new AjaxResult();
         SQLiteHelper helper = new SQLiteHelper(Setup.database_path);
-        Info info = new Info();
+        ArrayList<Difficulty> list = new ArrayList<>();
         try {
             helper.connection();
-            ResultSet rs = helper.select("main.Info", Info.columnName, null);
+            ResultSet rs = helper.select("main.Difficulty", Difficulty.columnName, null);
             while (rs.next()){
-                info.setId(rs.getInt(Info.columnName[0]));
-                info.setDatabase_Version(rs.getString(Info.columnName[1]));
-                info.setAuthor(rs.getString(Info.columnName[2]));
-                info.setPhigros_Version(rs.getString(Info.columnName[3]));
-                info.setTotal(rs.getInt(Info.columnName[4]));
-                info.setReference(rs.getString(Info.columnName[5]));
-                info.setReference_Author(rs.getString(Info.columnName[6]));
+                Difficulty difficulty = new Difficulty();
+                difficulty.setId(rs.getInt(Difficulty.columnName[0]));
+                difficulty.setGrade(rs.getString(Difficulty.columnName[1]));
+                difficulty.setLv(rs.getString(Difficulty.columnName[2]));
+                difficulty.setFullName(rs.getString(Difficulty.columnName[3]));
+                list.add(difficulty);
             }
-            result.setResultObj(info);
+            result.setResultObj(list);
             helper.close();
             return ResponseEntity.ok().body(result);
-        }catch (Exception ex) {
+        }catch (Exception ex){
             result.setCode(HttpStatus.INTERNAL_SERVER_ERROR);
             result.setMessage(ex.getMessage());
             result.setResultObj(new ExceptionResult().setStackTrace(ex.getStackTrace()));
