@@ -13,6 +13,8 @@ import top.kagurayayoi.phidbapi.entities.ExceptionResult;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
+// ChapterList Controller
+
 @RestController
 public class ChapterListController {
 
@@ -49,7 +51,7 @@ public class ChapterListController {
 
     private void Init() {
         result = new AjaxResult();
-        helper = new SQLiteHelper(Setup.database_path);
+        helper = new SQLiteHelper(Setup.getDatabasePath());
         list = new ArrayList<>();
     }
 }

@@ -13,6 +13,8 @@ import top.kagurayayoi.phidbapi.entities.Overview;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
+// Overview Controller
+
 @RestController
 public class OverviewController {
 
@@ -51,7 +53,7 @@ public class OverviewController {
 
     private void Init() {
         result = new AjaxResult();
-        helper = new SQLiteHelper(Setup.database_path);
+        helper = new SQLiteHelper(Setup.getDatabasePath());
         list = new ArrayList<>();
     }
 }

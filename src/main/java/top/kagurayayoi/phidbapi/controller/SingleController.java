@@ -3,7 +3,6 @@ package top.kagurayayoi.phidbapi.controller;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import top.kagurayayoi.database.SQLiteHelper;
@@ -11,9 +10,10 @@ import top.kagurayayoi.phidbapi.conf.Setup;
 import top.kagurayayoi.phidbapi.entities.AjaxResult;
 import top.kagurayayoi.phidbapi.entities.ExceptionResult;
 import top.kagurayayoi.phidbapi.entities.GeneralEntity;
-
 import java.sql.ResultSet;
 import java.util.ArrayList;
+
+// Single Controller
 
 @RestController
 public class SingleController {
@@ -55,7 +55,7 @@ public class SingleController {
 
     private void Init() {
         result = new AjaxResult();
-        helper = new SQLiteHelper(Setup.database_path);
+        helper = new SQLiteHelper(Setup.getDatabasePath());
         list = new ArrayList<>();
     }
 

@@ -13,6 +13,8 @@ import top.kagurayayoi.phidbapi.entities.Grade;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
+// Grade Controller
+
 @RestController
 public class GradeController {
 
@@ -49,7 +51,7 @@ public class GradeController {
 
     private void Init() {
         result = new AjaxResult();
-        helper = new SQLiteHelper(Setup.database_path);
+        helper = new SQLiteHelper(Setup.getDatabasePath());
         list = new ArrayList<>();
     }
 }

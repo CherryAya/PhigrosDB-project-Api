@@ -11,9 +11,12 @@ import top.kagurayayoi.phidbapi.entities.GeneralEntity;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
+// Chapter & ChapterEx Controller
+
 @RestController
 public class ChapterController {
 
+    // 成员变量
     private AjaxResult result;
     private SQLiteHelper helper;
     private ArrayList<GeneralEntity> list;
@@ -82,7 +85,7 @@ public class ChapterController {
 
     private void Init() {
         result = new AjaxResult();
-        helper = new SQLiteHelper(Setup.database_path);
+        helper = new SQLiteHelper(Setup.getDatabasePath());
         list = new ArrayList<>();
     }
 }

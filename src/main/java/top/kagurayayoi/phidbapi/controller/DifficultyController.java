@@ -10,9 +10,10 @@ import top.kagurayayoi.database.SQLiteHelper;
 import top.kagurayayoi.phidbapi.entities.AjaxResult;
 import top.kagurayayoi.phidbapi.entities.Difficulty;
 import top.kagurayayoi.phidbapi.entities.ExceptionResult;
-
 import java.sql.ResultSet;
 import java.util.ArrayList;
+
+// Difficulty Controller
 
 @RestController
 public class DifficultyController {
@@ -51,7 +52,7 @@ public class DifficultyController {
 
     private void Init() {
         result = new AjaxResult();
-        helper = new SQLiteHelper(Setup.database_path);
+        helper = new SQLiteHelper(Setup.getDatabasePath());
         list = new ArrayList<>();
     }
 }

@@ -12,12 +12,14 @@ import top.kagurayayoi.phidbapi.entities.ExceptionResult;
 import top.kagurayayoi.phidbapi.entities.Info;
 import java.sql.ResultSet;
 
+// Info Controller
+
 @RestController
 public class InfoController {
 
-    private AjaxResult result = new AjaxResult();
-    private SQLiteHelper helper = new SQLiteHelper(Setup.database_path);
-    private Info info = new Info();
+    private AjaxResult result;
+    private SQLiteHelper helper;
+    private Info info;
 
     @GetMapping({"/api/", "/api/info", "/api/Info"})
     @ResponseBody
@@ -49,6 +51,7 @@ public class InfoController {
 
     private void Init() {
         result = new AjaxResult();
-        helper = new SQLiteHelper(Setup.database_path);
+        helper = new SQLiteHelper(Setup.getDatabasePath());
+        info = new Info();
     }
 }

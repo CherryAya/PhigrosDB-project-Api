@@ -14,6 +14,8 @@ import top.kagurayayoi.phidbapi.entities.GeneralEntity;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
+// SideStory Controller
+
 @RestController
 public class SideStoryController {
 
@@ -54,7 +56,7 @@ public class SideStoryController {
     
     private void Init() {
         result = new AjaxResult();
-        helper = new SQLiteHelper(Setup.database_path);
+        helper = new SQLiteHelper(Setup.getDatabasePath());
         list = new ArrayList<>();
     }
 }
