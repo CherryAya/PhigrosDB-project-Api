@@ -2,6 +2,8 @@ package top.kagurayayoi.phidbapi.entities;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+// 收录曲总览表模型
+
 public class Overview extends BaseEntity {
 
     public final static String[] columnName = new String[]{"id", "Chapter", "Name", "Version", "Author"};

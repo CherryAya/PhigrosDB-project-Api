@@ -1,5 +1,7 @@
 package top.kagurayayoi.phidbapi.entities;
 
+// 异常模型
+
 public class ExceptionResult {
 
     private StackTraceElement[] StackTrace;

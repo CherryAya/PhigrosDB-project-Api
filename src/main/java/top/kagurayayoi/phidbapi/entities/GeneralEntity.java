@@ -2,6 +2,8 @@ package top.kagurayayoi.phidbapi.entities;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+// 通用难度定数表模型
+
 public class GeneralEntity extends BaseEntity{
 
     public final static String[] columnName = new String[]{"id", "Name", "EZ", "HD", "IN", "AT", "Legacy"};

@@ -2,6 +2,8 @@ package top.kagurayayoi.phidbapi.entities;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+// 难度评级信息模型
+
 public class Difficulty extends BaseEntity{
 
     public final static String[] columnName = new String[]{"id", "Grade", "Lv", "FullName"};

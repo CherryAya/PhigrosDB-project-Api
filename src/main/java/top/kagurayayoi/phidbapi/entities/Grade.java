@@ -2,6 +2,8 @@ package top.kagurayayoi.phidbapi.entities;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+// 得分评级信息模型
+
 public class Grade extends BaseEntity{
 
     public final static String[] columnName = new String[]{"id", "Symbol", "Fraction"};

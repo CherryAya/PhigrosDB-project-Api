@@ -2,6 +2,8 @@ package top.kagurayayoi.phidbapi.entities;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+// 数据库信息模型
+
 public class Info extends BaseEntity{
 
     public final static String[] columnName = new String[]{"id", "Database_Version", "Author", "Phigros_Version", "Total", "Reference", "Reference_Author"};

@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 
 public class AjaxResult {
 
+    // 成员变量
     private Integer Code = HttpStatus.OK.value();
     private String Location = "/";
     private String Message = "操作成功 | Succeed";

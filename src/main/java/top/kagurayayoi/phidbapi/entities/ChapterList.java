@@ -2,6 +2,8 @@ package top.kagurayayoi.phidbapi.entities;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+// 章节列表模型
+
 public class ChapterList extends BaseEntity{
 
     public final static String[] columnName = new String[]{"id", "Name", "Title", "Total"};
