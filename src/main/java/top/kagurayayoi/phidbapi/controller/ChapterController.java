@@ -20,7 +20,7 @@ public class ChapterController {
 
     @GetMapping({"/api/chapter/{ChapterName}", "/api/Chapter/{ChapterName}"})
     @ResponseBody
-    public ResponseEntity<AjaxResult> Legacy(@PathVariable("ChapterName") String ChapterName){
+    public ResponseEntity<AjaxResult> Chapter(@PathVariable("ChapterName") String ChapterName){
         this.Init();
         result.setLocation("/api/chapter/chapter-" + ChapterName);
         try {
