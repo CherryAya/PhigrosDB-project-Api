@@ -6,7 +6,8 @@ import org.springframework.http.HttpStatus;
 public class AjaxResult {
 
     private Integer Code = HttpStatus.OK.value();
-    private String Message = "操作成功";
+    private String Location = "/";
+    private String Message = "操作成功 | Succeed";
     private Object resultObj = null;
 
     // static method
@@ -34,13 +35,24 @@ public class AjaxResult {
         return Code;
     }
 
+    // Location Getter/Setter
+    public AjaxResult setLocation(String location) {
+        this.Location = location;
+        return this;
+    }
+
+    @JsonProperty(index = 2)
+    public String getLocation() {
+        return this.Location;
+    }
+
     // Message Getter/Setter
     public AjaxResult setMessage(String Message) {
         this.Message = Message;
         return this;
     }
 
-    @JsonProperty(index = 2)
+    @JsonProperty(index = 3)
     public String getMessage() {
         return Message;
     }
@@ -51,11 +63,10 @@ public class AjaxResult {
         return this;
     }
 
-    @JsonProperty(index = 3)
+    @JsonProperty(index = 4)
     public Object getResultObj() {
         return resultObj;
     }
-
 
 }
 
