@@ -1,4 +1,4 @@
-package top.kagurayayoi.phidbapi.database;
+package top.kagurayayoi.database;
 
 import org.springframework.lang.Nullable;
 

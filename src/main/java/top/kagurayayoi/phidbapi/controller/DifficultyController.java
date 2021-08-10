@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import top.kagurayayoi.phidbapi.conf.Setup;
-import top.kagurayayoi.phidbapi.database.SQLiteHelper;
+import top.kagurayayoi.database.SQLiteHelper;
 import top.kagurayayoi.phidbapi.entities.AjaxResult;
 import top.kagurayayoi.phidbapi.entities.Difficulty;
 import top.kagurayayoi.phidbapi.entities.ExceptionResult;
