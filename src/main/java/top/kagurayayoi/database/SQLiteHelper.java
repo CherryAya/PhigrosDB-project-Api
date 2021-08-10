@@ -4,8 +4,11 @@ import org.springframework.lang.Nullable;
 
 import java.sql.*;
 
+// SQLite帮助类
+
 public class SQLiteHelper {
 
+    // 成员变量
     private Connection conn = null;
     private Statement state = null;
     private ResultSet resultSet = null;
