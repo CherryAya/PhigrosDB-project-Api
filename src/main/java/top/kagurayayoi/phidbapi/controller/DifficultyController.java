@@ -16,7 +16,7 @@ import java.util.ArrayList;
 
 @RestController
 public class DifficultyController {
-    @GetMapping({"/Difficulty", "/difficulty"})
+    @GetMapping({"/api/Difficulty", "/api/difficulty"})
     @ResponseBody
     public ResponseEntity<AjaxResult> Difficulty(){
         AjaxResult result = new AjaxResult();

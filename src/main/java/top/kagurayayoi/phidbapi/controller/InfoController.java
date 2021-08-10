@@ -14,7 +14,7 @@ import java.sql.ResultSet;
 
 @RestController
 public class InfoController {
-    @GetMapping({"/", "/info", "/Info"})
+    @GetMapping({"/api/", "/api/info", "/api/Info"})
     @ResponseBody
     public ResponseEntity<AjaxResult> Info() {
         AjaxResult result = new AjaxResult();

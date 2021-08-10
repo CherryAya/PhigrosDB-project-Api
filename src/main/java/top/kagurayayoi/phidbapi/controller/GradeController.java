@@ -15,7 +15,7 @@ import java.util.ArrayList;
 
 @RestController
 public class GradeController {
-    @GetMapping({"/Grade", "grade"})
+    @GetMapping({"/api/Grade", "/api/grade"})
     @ResponseBody
     public ResponseEntity<AjaxResult> Grade(){
         AjaxResult result = new AjaxResult();

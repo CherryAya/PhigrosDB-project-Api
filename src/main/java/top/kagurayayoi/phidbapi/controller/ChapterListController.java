@@ -15,7 +15,7 @@ import java.util.ArrayList;
 
 @RestController
 public class ChapterListController {
-    @GetMapping({"/ChapterList", "chapterlist", "chapterList", "Chapterlist"})
+    @GetMapping({"/api/ChapterList", "/api/chapterlist", "/api/chapterList", "/api/Chapterlist"})
     @ResponseBody
     public ResponseEntity<AjaxResult> ChapterList(){
         AjaxResult result = new AjaxResult();

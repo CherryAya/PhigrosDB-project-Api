@@ -15,7 +15,7 @@ import java.util.ArrayList;
 
 @RestController
 public class OverviewController {
-    @GetMapping({"/Overview", "/overview"})
+    @GetMapping({"/api/Overview", "/api/overview"})
     @ResponseBody
     public ResponseEntity<AjaxResult> Overview(){
         AjaxResult result = new AjaxResult();
