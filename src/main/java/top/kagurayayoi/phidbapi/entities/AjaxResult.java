@@ -5,7 +5,7 @@ import org.springframework.http.HttpStatus;
 
 public class AjaxResult {
 
-    private int Code = HttpStatus.OK.value();
+    private Integer Code = HttpStatus.OK.value();
     private String Message = "操作成功";
     private Object resultObj = null;
 
@@ -30,7 +30,7 @@ public class AjaxResult {
     }
 
     @JsonProperty(index = 1)
-    public int getCode() {
+    public Integer getCode() {
         return Code;
     }
 

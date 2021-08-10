@@ -8,7 +8,7 @@ public class Info extends BaseEntity{
     private String Database_Version;
     private String Author;
     private String Phigros_Version;
-    private int Total;
+    private Integer Total;
     private String Reference;
     private String Reference_Author;
 
@@ -40,11 +40,11 @@ public class Info extends BaseEntity{
     }
 
     @JsonProperty(index = 4)
-    public int getTotal() {
+    public Integer getTotal() {
         return Total;
     }
 
-    public void setTotal(int total) {
+    public void setTotal(Integer total) {
         Total = total;
     }
 
