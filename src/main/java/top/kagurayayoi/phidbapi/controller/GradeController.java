@@ -15,12 +15,16 @@ import java.util.ArrayList;
 
 @RestController
 public class GradeController {
+
+    private AjaxResult result;
+    private SQLiteHelper helper;
+    private ArrayList<Grade> list;
+
     @GetMapping({"/api/Grade", "/api/grade"})
     @ResponseBody
     public ResponseEntity<AjaxResult> Grade(){
-        AjaxResult result = new AjaxResult();
-        SQLiteHelper helper = new SQLiteHelper(Setup.database_path);
-        ArrayList<Grade> list = new ArrayList<>();
+        this.Init();
+        result.setLocation("/api/grade");
         try {
             helper.connection();
             ResultSet rs = helper.select("main.Grade", Grade.columnName, null);
@@ -41,5 +45,11 @@ public class GradeController {
             ex.printStackTrace();
             return ResponseEntity.internalServerError().body(result);
         }
+    }
+
+    private void Init(){
+        result = new AjaxResult();
+        helper = new SQLiteHelper(Setup.database_path);
+        list = new ArrayList<>();
     }
 }

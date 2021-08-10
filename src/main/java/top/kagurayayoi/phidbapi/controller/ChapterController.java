@@ -22,6 +22,7 @@ public class ChapterController {
     @ResponseBody
     public ResponseEntity<AjaxResult> Legacy(@PathVariable("ChapterName") String ChapterName){
         this.Init();
+        result.setLocation("/api/chapter/chapter-" + ChapterName);
         try {
             helper.connection();
             ResultSet rs = helper.selectAll("main.'Chapter-" + ChapterName+ "'", null);

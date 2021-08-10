@@ -14,12 +14,15 @@ import java.sql.ResultSet;
 
 @RestController
 public class InfoController {
+
+    private AjaxResult result = new AjaxResult();
+    private SQLiteHelper helper = new SQLiteHelper(Setup.database_path);
+    private Info info = new Info();
+
     @GetMapping({"/api/", "/api/info", "/api/Info"})
     @ResponseBody
     public ResponseEntity<AjaxResult> Info() {
-        AjaxResult result = new AjaxResult();
-        SQLiteHelper helper = new SQLiteHelper(Setup.database_path);
-        Info info = new Info();
+        this.Init();
         try {
             helper.connection();
             ResultSet rs = helper.select("main.Info", Info.columnName, null);
@@ -42,5 +45,10 @@ public class InfoController {
             ex.printStackTrace();
             return ResponseEntity.internalServerError().body(result);
         }
+    }
+
+    private void Init(){
+        result = new AjaxResult();
+        helper = new SQLiteHelper(Setup.database_path);
     }
 }

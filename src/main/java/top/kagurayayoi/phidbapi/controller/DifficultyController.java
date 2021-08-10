@@ -16,12 +16,16 @@ import java.util.ArrayList;
 
 @RestController
 public class DifficultyController {
+
+    private AjaxResult result;
+    private SQLiteHelper helper;
+    private ArrayList<Difficulty> list;
+
     @GetMapping({"/api/Difficulty", "/api/difficulty"})
     @ResponseBody
     public ResponseEntity<AjaxResult> Difficulty(){
-        AjaxResult result = new AjaxResult();
-        SQLiteHelper helper = new SQLiteHelper(Setup.database_path);
-        ArrayList<Difficulty> list = new ArrayList<>();
+        this.Init();
+        result.setLocation("/api/difficulty");
         try {
             helper.connection();
             ResultSet rs = helper.select("main.Difficulty", Difficulty.columnName, null);
@@ -43,5 +47,11 @@ public class DifficultyController {
             ex.printStackTrace();
             return ResponseEntity.internalServerError().body(result);
         }
+    }
+
+    private void Init(){
+        result = new AjaxResult();
+        helper = new SQLiteHelper(Setup.database_path);
+        list = new ArrayList<>();
     }
 }

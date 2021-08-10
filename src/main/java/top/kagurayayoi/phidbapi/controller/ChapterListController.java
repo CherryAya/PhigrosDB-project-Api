@@ -15,12 +15,15 @@ import java.util.ArrayList;
 
 @RestController
 public class ChapterListController {
+
+    private AjaxResult result;
+    private SQLiteHelper helper;
+    private ArrayList<ChapterList> list;
+
     @GetMapping({"/api/ChapterList", "/api/chapterlist", "/api/chapterList", "/api/Chapterlist"})
     @ResponseBody
     public ResponseEntity<AjaxResult> ChapterList(){
-        AjaxResult result = new AjaxResult();
-        SQLiteHelper helper = new SQLiteHelper(Setup.database_path);
-        ArrayList<ChapterList> list = new ArrayList<>();
+        this.Init();
         try {
             helper.connection();
             ResultSet rs = helper.select("main.ChapterList", ChapterList.columnName, null);
@@ -42,5 +45,11 @@ public class ChapterListController {
             ex.printStackTrace();
             return ResponseEntity.internalServerError().body(result);
         }
+    }
+
+    private void Init(){
+        result = new AjaxResult();
+        helper = new SQLiteHelper(Setup.database_path);
+        list = new ArrayList<>();
     }
 }

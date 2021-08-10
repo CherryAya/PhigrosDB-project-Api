@@ -15,12 +15,16 @@ import java.util.ArrayList;
 
 @RestController
 public class OverviewController {
+
+    private AjaxResult result;
+    private SQLiteHelper helper;
+    private ArrayList<Overview> list;
+
     @GetMapping({"/api/Overview", "/api/overview"})
     @ResponseBody
     public ResponseEntity<AjaxResult> Overview(){
-        AjaxResult result = new AjaxResult();
-        SQLiteHelper helper = new SQLiteHelper(Setup.database_path);
-        ArrayList<Overview> list = new ArrayList<>();
+        this.Init();
+        result.setLocation("/api/overview");
         try {
             helper.connection();
             ResultSet rs = helper.select("main.Overview", Overview.columnName, null);
@@ -43,5 +47,11 @@ public class OverviewController {
             ex.printStackTrace();
             return ResponseEntity.internalServerError().body(result);
         }
+    }
+
+    private void Init(){
+        result = new AjaxResult();
+        helper = new SQLiteHelper(Setup.database_path);
+        list = new ArrayList<>();
     }
 }
