@@ -22,7 +22,7 @@ public class OverviewController {
 
     @GetMapping({"/api/Overview", "/api/overview"})
     @ResponseBody
-    public ResponseEntity<AjaxResult> Overview(){
+    public ResponseEntity<AjaxResult> Overview() {
         this.Init();
         result.setLocation("/api/overview");
         try {
@@ -49,7 +49,7 @@ public class OverviewController {
         }
     }
 
-    private void Init(){
+    private void Init() {
         result = new AjaxResult();
         helper = new SQLiteHelper(Setup.database_path);
         list = new ArrayList<>();

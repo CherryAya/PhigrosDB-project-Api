@@ -20,7 +20,7 @@ public class ChapterController {
 
     @GetMapping({"/api/chapter/{ChapterName}", "/api/Chapter/{ChapterName}"})
     @ResponseBody
-    public ResponseEntity<AjaxResult> Chapter(@PathVariable("ChapterName") String ChapterName){
+    public ResponseEntity<AjaxResult> Chapter(@PathVariable("ChapterName") String ChapterName) {
         this.Init();
         result.setLocation("/api/chapter/chapter-" + ChapterName);
         try {
@@ -51,7 +51,7 @@ public class ChapterController {
 
     @GetMapping({"/api/chapter/ex/{ChapterName}", "/api/Chapter/Ex/{ChapterName}", "/api/Chapter/ex/{ChapterName}", "/api/chapter/Ex/{ChapterName}"})
     @ResponseBody
-    public ResponseEntity<AjaxResult> ChapterEX(@PathVariable("ChapterName") String ChapterName){
+    public ResponseEntity<AjaxResult> ChapterEX(@PathVariable("ChapterName") String ChapterName) {
         this.Init();
         result.setLocation("/api/chapter/ex/" + ChapterName);
         try {
@@ -80,7 +80,7 @@ public class ChapterController {
         }
     }
 
-    private void Init(){
+    private void Init() {
         result = new AjaxResult();
         helper = new SQLiteHelper(Setup.database_path);
         list = new ArrayList<>();

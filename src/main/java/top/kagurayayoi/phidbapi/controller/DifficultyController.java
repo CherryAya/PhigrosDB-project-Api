@@ -23,7 +23,7 @@ public class DifficultyController {
 
     @GetMapping({"/api/Difficulty", "/api/difficulty"})
     @ResponseBody
-    public ResponseEntity<AjaxResult> Difficulty(){
+    public ResponseEntity<AjaxResult> Difficulty() {
         this.Init();
         result.setLocation("/api/difficulty");
         try {
@@ -49,7 +49,7 @@ public class DifficultyController {
         }
     }
 
-    private void Init(){
+    private void Init() {
         result = new AjaxResult();
         helper = new SQLiteHelper(Setup.database_path);
         list = new ArrayList<>();

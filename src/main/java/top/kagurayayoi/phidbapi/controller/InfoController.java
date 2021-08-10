@@ -47,7 +47,7 @@ public class InfoController {
         }
     }
 
-    private void Init(){
+    private void Init() {
         result = new AjaxResult();
         helper = new SQLiteHelper(Setup.database_path);
     }

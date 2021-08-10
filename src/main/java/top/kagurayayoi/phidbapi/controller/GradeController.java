@@ -22,7 +22,7 @@ public class GradeController {
 
     @GetMapping({"/api/Grade", "/api/grade"})
     @ResponseBody
-    public ResponseEntity<AjaxResult> Grade(){
+    public ResponseEntity<AjaxResult> Grade() {
         this.Init();
         result.setLocation("/api/grade");
         try {
@@ -47,7 +47,7 @@ public class GradeController {
         }
     }
 
-    private void Init(){
+    private void Init() {
         result = new AjaxResult();
         helper = new SQLiteHelper(Setup.database_path);
         list = new ArrayList<>();

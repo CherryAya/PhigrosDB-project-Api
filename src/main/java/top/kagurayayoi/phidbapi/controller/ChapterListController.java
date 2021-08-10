@@ -22,7 +22,7 @@ public class ChapterListController {
 
     @GetMapping({"/api/ChapterList", "/api/chapterlist", "/api/chapterList", "/api/Chapterlist"})
     @ResponseBody
-    public ResponseEntity<AjaxResult> ChapterList(){
+    public ResponseEntity<AjaxResult> ChapterList() {
         this.Init();
         try {
             helper.connection();
@@ -47,7 +47,7 @@ public class ChapterListController {
         }
     }
 
-    private void Init(){
+    private void Init() {
         result = new AjaxResult();
         helper = new SQLiteHelper(Setup.database_path);
         list = new ArrayList<>();
