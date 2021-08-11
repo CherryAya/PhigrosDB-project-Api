@@ -14,6 +14,10 @@ public class Logger {
         return true;
     }
 
+    public static loggerLevel getLoggerLevel(){
+        return Logger.level;
+    }
+
     public static synchronized boolean Debug(Class thisClass, Object type, Object message) {
         Logger.init();
         if (level.ordinal() != loggerLevel.Debug.ordinal())

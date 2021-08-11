@@ -18,12 +18,14 @@ public class PhigrosDbProjectApiApplication {
 
 		// Start Info
 		Logger.initLoggerLevel(loggerLevel.Info);
+		Logger.Info(Logger.class, "loggerLevel", Logger.getLoggerLevel().toString());
 		Logger.Info(PhigrosDbProjectApiApplication.class, "", "=====================");
 		Logger.Info(PhigrosDbProjectApiApplication.class, "PhigrosDB-Project", "Api");
 		Logger.Info(PhigrosDbProjectApiApplication.class, "Api-version", "1.0.0-SNAPSHOT");
 		if (!Setup.checkDatabaseExists()) {		// Check Database exists
 			Logger.Fatal(Setup.class, "checkDatabaseExists", "Database is no exisits!");
-			Logger.Info(PhigrosDbProjectApiApplication.class, "Fatal", "App exit in 5 sec.");
+			Logger.Info(PhigrosDbProjectApiApplication.class, "", "=====================");
+			Logger.Info(PhigrosDbProjectApiApplication.class, "Warn", "App exit in 5 sec.");
 			try {
 				Thread.sleep(5000);
 			} catch (InterruptedException e) {
