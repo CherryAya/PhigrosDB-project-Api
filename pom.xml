@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>top.kagurayayoi</groupId>
 	<artifactId>phidbapi</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0-SNAPSHOT</version>
 	<name>PhigrosDB-Project-API</name>
 	<description>API implementation of PhigrosDB-Project</description>
 	<properties>
