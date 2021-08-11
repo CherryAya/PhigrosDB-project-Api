@@ -4,6 +4,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import top.kagurayayoi.database.SQLiteHelper;
+import top.kagurayayoi.logger.Logger;
 import top.kagurayayoi.phidbapi.conf.Setup;
 import top.kagurayayoi.phidbapi.entities.AjaxResult;
 import top.kagurayayoi.phidbapi.entities.ExceptionResult;
@@ -25,7 +26,7 @@ public class ChapterController {
     @ResponseBody
     public ResponseEntity<AjaxResult> Chapter(@PathVariable("ChapterName") String ChapterName) {
         this.Init();
-        result.setLocation("/api/chapter/chapter-" + ChapterName);
+        result.setLocation("/api/chapter/" + ChapterName);
         try {
             helper.connection();
             ResultSet rs = helper.selectAll("main.'Chapter-" + ChapterName+ "'", null);
@@ -42,12 +43,13 @@ public class ChapterController {
             }
             result.setResultObj(list);
             helper.close();
+            Logger.Info(this.getClass(), "Controller:Chapter", "Request Call");
             return ResponseEntity.ok().body(result);
         }catch (Exception ex){
             result.setCode(HttpStatus.INTERNAL_SERVER_ERROR);
             result.setMessage(ex.getMessage());
             result.setResultObj(new ExceptionResult().setStackTrace(ex.getStackTrace()));
-            ex.printStackTrace();
+            Logger.Exception(this.getClass(), "Controller:Chapter", result.getMessage());
             return ResponseEntity.internalServerError().body(result);
         }
     }
@@ -73,12 +75,13 @@ public class ChapterController {
             }
             result.setResultObj(list);
             helper.close();
+            Logger.Info(this.getClass(), "Controller:ChapterEx", "Request Call");
             return ResponseEntity.ok().body(result);
         }catch (Exception ex){
             result.setCode(HttpStatus.INTERNAL_SERVER_ERROR);
             result.setMessage(ex.getMessage());
             result.setResultObj(new ExceptionResult().setStackTrace(ex.getStackTrace()));
-            ex.printStackTrace();
+            Logger.Exception(this.getClass(), "Controller:ChapterEx", result.getMessage());
             return ResponseEntity.internalServerError().body(result);
         }
     }

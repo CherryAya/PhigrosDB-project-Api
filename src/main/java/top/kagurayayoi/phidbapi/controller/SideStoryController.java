@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import top.kagurayayoi.database.SQLiteHelper;
+import top.kagurayayoi.logger.Logger;
 import top.kagurayayoi.phidbapi.conf.Setup;
 import top.kagurayayoi.phidbapi.entities.AjaxResult;
 import top.kagurayayoi.phidbapi.entities.ExceptionResult;
@@ -44,12 +45,13 @@ public class SideStoryController {
             }
             result.setResultObj(list);
             helper.close();
+            Logger.Info(this.getClass(), "Controller:SideStory", "Request Call");
             return ResponseEntity.ok().body(result);
         }catch (Exception ex){
             result.setCode(HttpStatus.INTERNAL_SERVER_ERROR);
             result.setMessage(ex.getMessage());
             result.setResultObj(new ExceptionResult().setStackTrace(ex.getStackTrace()));
-            ex.printStackTrace();
+            Logger.Exception(this.getClass(), "Controller:SideStory", result.getMessage());
             return ResponseEntity.internalServerError().body(result);
         }
     }
