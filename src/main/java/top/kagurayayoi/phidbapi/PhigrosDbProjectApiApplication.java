@@ -2,6 +2,7 @@ package top.kagurayayoi.phidbapi;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ConfigurableApplicationContext;
 import top.kagurayayoi.logger.Logger;
 import top.kagurayayoi.logger.loggerLevel;
 import top.kagurayayoi.phidbapi.conf.Setup;
@@ -12,14 +13,32 @@ public class PhigrosDbProjectApiApplication {
 	public static void main(String[] args) {
 
 		// SpringBoot Run
-		SpringApplication.run(PhigrosDbProjectApiApplication.class, args);
+		ConfigurableApplicationContext cac = SpringApplication.run(PhigrosDbProjectApiApplication.class, args);
 
 		// Info
 		Logger.initLoggerLevel(loggerLevel.Info);
+		Logger.Info(PhigrosDbProjectApiApplication.class, "", "=====================");
+		Logger.Info(PhigrosDbProjectApiApplication.class, "PhigrosDB-Project", "Api");
 		Logger.Info(PhigrosDbProjectApiApplication.class, "Api-version", "1.0.0-SNAPSHOT");
 		Logger.Info(PhigrosDbProjectApiApplication.class, "Database-version", "1.0.0");
 		Logger.Info(PhigrosDbProjectApiApplication.class, "DatabasePath", Setup.getDatabasePath());
 		Logger.Info(PhigrosDbProjectApiApplication.class, "By", "CherryAya");
+		Logger.Info(PhigrosDbProjectApiApplication.class, "", "=====================");
+
+		// Check Database exists
+		if (!Setup.checkDatabaseExists()){
+			Logger.Fatal(Setup.class, "checkDatabaseExists", "Database is no exisits!");
+			Logger.Info(PhigrosDbProjectApiApplication.class, "Fatal", "App exit in 5 sec.");
+			try {
+				Thread.sleep(5000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			SpringApplication.exit(cac);
+		}else {
+			Logger.Info(Setup.class, "checkDatabaseExists", "Database is exisits.");
+		}
+
 	}
 
 }
