@@ -22,7 +22,7 @@ public class InfoController {
     private SQLiteHelper helper;
     private Info info;
 
-    @GetMapping({"/api/", "/api/info", "/api/Info"})
+    @GetMapping({"/api", "/api/", "/api/info", "/api/Info"})
     @ResponseBody
     public ResponseEntity<AjaxResult> Info() {
         this.Init();
