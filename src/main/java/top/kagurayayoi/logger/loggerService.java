@@ -3,13 +3,14 @@ package top.kagurayayoi.logger;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class loggerService {
+public class loggerService implements ILoggerService{
 
     private StringBuilder builder;
     private Date date;
     private SimpleDateFormat formatter;
     private String time;
 
+    @Override
     public boolean Debug(Class thisClass, Object type, Object message) {
         this.init();
         time = formatter.format(date.getTime());
@@ -20,6 +21,7 @@ public class loggerService {
         return true;
     }
 
+    @Override
     public boolean Info(Class thisClass, Object type, Object message) {
         this.init();
         time = formatter.format(date.getTime());
@@ -30,6 +32,7 @@ public class loggerService {
         return true;
     }
 
+    @Override
     public boolean Warn(Class thisClass, Object type, Object message) {
         this.init();
         time = formatter.format(date.getTime());
@@ -40,6 +43,7 @@ public class loggerService {
         return true;
     }
 
+    @Override
     public boolean Exception(Class thisClass, Object type, Object message) {
         this.init();
         time = formatter.format(date.getTime());
@@ -50,6 +54,7 @@ public class loggerService {
         return true;
     }
 
+    @Override
     public boolean Fatal(Class thisClass, Object type, Object message) {
         this.init();
         time = formatter.format(date.getTime());

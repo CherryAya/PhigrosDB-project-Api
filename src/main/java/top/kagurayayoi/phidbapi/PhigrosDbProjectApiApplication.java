@@ -17,7 +17,7 @@ public class PhigrosDbProjectApiApplication {
 				SpringApplication.run(PhigrosDbProjectApiApplication.class, args);
 
 		// Start Info
-		Logger.initLoggerLevel(loggerLevel.Info);
+		Logger.setLoggerLevel(loggerLevel.Info);
 		Logger.Info(Logger.class, "loggerLevel", Logger.getLoggerLevel().toString());
 		Logger.Info(PhigrosDbProjectApiApplication.class, "", "=====================");
 		Logger.Info(PhigrosDbProjectApiApplication.class, "PhigrosDB-Project", "Api");
