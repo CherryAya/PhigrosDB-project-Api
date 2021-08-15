@@ -16,14 +16,27 @@ public class PhigrosDbProjectApiApplication {
 		ConfigurableApplicationContext cac =
 				SpringApplication.run(PhigrosDbProjectApiApplication.class, args);
 
+		// check args
+		if (args.length != 0) {
+			for (int i = 0; i < args.length; i++) {
+				Logger.Info(PhigrosDbProjectApiApplication.class, "arg[" + i + "]", args[i]);
+				if (args[i].startsWith("--dbpath:")) { // --dbpath:xxx
+					String path = args[i].substring(9);
+					Setup.setDatabasePath(path);
+				}
+			}
+		}else {
+			Logger.Info(PhigrosDbProjectApiApplication.class, "args", "没有参数输入,使用默认数据库位置");
+		}
+
 		// Start Info
 		Logger.setLoggerLevel(loggerLevel.Info);
 		Logger.Info(Logger.class, "loggerLevel", Logger.getLoggerLevel().toString());
 		Logger.Info(PhigrosDbProjectApiApplication.class, "", "=====================");
 		Logger.Info(PhigrosDbProjectApiApplication.class, "PhigrosDB-Project", "Api");
-		Logger.Info(PhigrosDbProjectApiApplication.class, "Api-version", "1.0.0-SNAPSHOT");
+		Logger.Info(PhigrosDbProjectApiApplication.class, "Api-version", "1.0.1-SNAPSHOT");
 		if (!Setup.checkDatabaseExists()) {		// Check Database exists
-			Logger.Fatal(Setup.class, "checkDatabaseExists", "Database is no exisits!");
+			Logger.Fatal(Setup.class, "checkDatabaseExists", "数据库不存在或设置的数据库地址不正确!");
 			Logger.Info(PhigrosDbProjectApiApplication.class, "", "=====================");
 			Logger.Info(PhigrosDbProjectApiApplication.class, "Warn", "App exit in 5 sec.");
 			try {
@@ -33,8 +46,8 @@ public class PhigrosDbProjectApiApplication {
 			}
 			SpringApplication.exit(cac);
 		}else {
-			Logger.Info(Setup.class, "checkDatabaseExists", "Database is exisits.");
-			Logger.Info(PhigrosDbProjectApiApplication.class, "Database-version", "1.0.0");
+			Logger.Info(Setup.class, "checkDatabaseExists", "数据库存在");
+			Logger.Info(PhigrosDbProjectApiApplication.class, "Database-version", Setup.getDatabaseVersion());
 			Logger.Info(PhigrosDbProjectApiApplication.class, "DatabasePath", Setup.getDatabasePath());
 			Logger.Info(PhigrosDbProjectApiApplication.class, "By", "CherryAya");
 			Logger.Info(PhigrosDbProjectApiApplication.class, "", "=====================");
