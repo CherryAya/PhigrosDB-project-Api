@@ -38,6 +38,7 @@ public class OverviewController {
                 overview.setName(rs.getString(Overview.columnName[2]));
                 overview.setVersion(rs.getString(Overview.columnName[3]));
                 overview.setAuthor(rs.getString(Overview.columnName[4]));
+                overview.setIllustration(rs.getString(Overview.columnName[5]));
                 list.add(overview);
             }
             result.setResultObj(list);

@@ -6,11 +6,12 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Overview extends BaseEntity {
 
-    public final static String[] columnName = new String[]{"id", "Chapter", "Name", "Version", "Author"};
+    public final static String[] columnName = new String[]{"id", "Chapter", "Name", "Version", "Author", "Illustration"};
     private String Chapter;
     private String Name;
     private String Version;
     private String Author;
+    private String Illustration;
 
     @JsonProperty(index = 2)
     public String getChapter() {
@@ -46,5 +47,14 @@ public class Overview extends BaseEntity {
 
     public void setAuthor(String author) {
         Author = author;
+    }
+
+    @JsonProperty(index = 6)
+    public String getIllustration() {
+        return Illustration;
+    }
+
+    public void setIllustration(String illustration) {
+        Illustration = illustration;
     }
 }
