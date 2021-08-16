@@ -9,6 +9,7 @@ import top.kagurayayoi.logger.Logger;
 import top.kagurayayoi.phidbapi.conf.Setup;
 import top.kagurayayoi.database.SQLiteHelper;
 import top.kagurayayoi.phidbapi.entities.AjaxResult;
+import top.kagurayayoi.phidbapi.entities.DatabaseVersion;
 import top.kagurayayoi.phidbapi.entities.ExceptionResult;
 import top.kagurayayoi.phidbapi.entities.Overview;
 import java.sql.ResultSet;
@@ -38,7 +39,13 @@ public class OverviewController {
                 overview.setName(rs.getString(Overview.columnName[2]));
                 overview.setVersion(rs.getString(Overview.columnName[3]));
                 overview.setAuthor(rs.getString(Overview.columnName[4]));
-                overview.setIllustration(rs.getString(Overview.columnName[5]));
+                if (Setup.getDatabaseVersion().getX() >= 1) {   // 1
+                    if (Setup.getDatabaseVersion().getY() >= 0) {   // 0
+                        if (Setup.getDatabaseVersion().getZ()>=1) { // 1
+                            overview.setIllustration(rs.getString(Overview.columnName[5]));
+                        }
+                    }
+                }
                 list.add(overview);
             }
             result.setResultObj(list);

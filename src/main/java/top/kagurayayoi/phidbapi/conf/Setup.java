@@ -15,8 +15,8 @@ public class Setup {
     private static DatabaseVersion dbVersion = new DatabaseVersion(1,0,1);
 
     // 数据库版本选取
-    public static String getDatabaseVersion(){
-        return dbVersion.toString();
+    public static DatabaseVersion getDatabaseVersion(){
+        return dbVersion;
     }
 
     // 数据库版本获取 from database select
