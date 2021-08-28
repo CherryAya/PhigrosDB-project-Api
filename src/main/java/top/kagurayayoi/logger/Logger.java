@@ -3,9 +3,9 @@ package top.kagurayayoi.logger;
 public class Logger {
 
     private static loggerLevel level = loggerLevel.Info;
-    private static ILoggerService service = new loggerService();
+    private static LoggerService service = new defaultLoggerService();
 
-    public static void setLoggerService(ILoggerService newLoggerService){
+    public static void setLoggerService(LoggerService newLoggerService){
         Logger.service = newLoggerService;
     }
 
@@ -23,21 +23,21 @@ public class Logger {
     }
 
     public static synchronized boolean Debug(Class thisClass, Object type, Object message) {
-        if (level.ordinal() != loggerLevel.Debug.ordinal())
+        if (level.ordinal() > loggerLevel.Debug.ordinal())
             return false;
         service.Debug(thisClass, type, message);
         return true;
     }
 
     public static synchronized boolean Info(Class thisClass, Object type, Object message) {
-        if (level.ordinal() < loggerLevel.Info.ordinal())
+        if (level.ordinal() > loggerLevel.Info.ordinal())
             return false;
         service.Info(thisClass, type, message);
         return true;
     }
 
     public static synchronized boolean Warn(Class thisClass, Object type, Object message) {
-        if (level.ordinal() < loggerLevel.Warn.ordinal())
+        if (level.ordinal() > loggerLevel.Warn.ordinal())
             return false;
         service.Warn(thisClass, type, message);
         return true;

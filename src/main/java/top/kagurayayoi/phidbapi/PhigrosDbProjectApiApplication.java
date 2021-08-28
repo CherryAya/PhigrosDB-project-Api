@@ -34,7 +34,7 @@ public class PhigrosDbProjectApiApplication {
 		Logger.Info(Logger.class, "loggerLevel", Logger.getLoggerLevel().toString());
 		Logger.Info(PhigrosDbProjectApiApplication.class, "", "=====================");
 		Logger.Info(PhigrosDbProjectApiApplication.class, "PhigrosDB-Project", "Api");
-		Logger.Info(PhigrosDbProjectApiApplication.class, "Api-version", "1.0.1-SNAPSHOT");
+		Logger.Info(PhigrosDbProjectApiApplication.class, "Api-version", Setup.getApiVersion());
 		if (!Setup.checkDatabaseExists()) {		// Check Database exists
 			Logger.Fatal(Setup.class, "checkDatabaseExists", "数据库不存在或设置的数据库地址不正确!");
 			Logger.Info(PhigrosDbProjectApiApplication.class, "", "=====================");
@@ -46,6 +46,7 @@ public class PhigrosDbProjectApiApplication {
 			}
 			SpringApplication.exit(cac);
 		}else {
+			Setup.setDatabaseVersion();
 			Logger.Info(Setup.class, "checkDatabaseExists", "数据库存在");
 			Logger.Info(PhigrosDbProjectApiApplication.class, "Database-version", Setup.getDatabaseVersion());
 			Logger.Info(PhigrosDbProjectApiApplication.class, "DatabasePath", Setup.getDatabasePath());
