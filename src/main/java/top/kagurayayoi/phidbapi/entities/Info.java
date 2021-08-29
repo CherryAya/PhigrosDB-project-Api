@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import top.kagurayayoi.version.PublishType;
 import top.kagurayayoi.version.Version;
 
+import java.util.Objects;
+
 // 数据库信息模型
 
 public class Info extends BaseEntity{
@@ -42,9 +44,9 @@ public class Info extends BaseEntity{
     }
 
     public Info setPublish_Type(String publish_Type) {
-        if (publish_Type == PublishType.SNAPSHOT.toString())
+        if (Objects.equals(publish_Type, PublishType.SNAPSHOT.toString()))
             Publish_Type = PublishType.SNAPSHOT;
-        else if (publish_Type == PublishType.RELEASE.toString())
+        else if (Objects.equals(publish_Type, PublishType.RELEASE.toString()))
             Publish_Type = PublishType.RELEASE;
         return this;
     }

@@ -35,7 +35,7 @@ public class VersionTool {
                     if (nowVersion.getType() == specifiedVersion.getType())
                         return true;
                     // 现发布类型 高于 指定发布类型 ( RELEASE > SNAPSHOT )
-                    else if (nowVersion.getType() == PublishType.RELEASE && specifiedVersion.getType() == PublishType.SNAPSHOT)
+                    else if (nowVersion.getType().ordinal() > specifiedVersion.getType().ordinal())
                         return true;
                     // 现发布类型 低于 指定发布类型 ( SNAPSHOT > RELEASE )
                     else

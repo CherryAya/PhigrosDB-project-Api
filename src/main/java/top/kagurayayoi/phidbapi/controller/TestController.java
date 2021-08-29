@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import top.kagurayayoi.logger.Logger;
 import top.kagurayayoi.phidbapi.entities.AjaxResult;
+import top.kagurayayoi.version.PublishType;
 
 // 该类用于测试
 // Test Controller
@@ -22,6 +23,10 @@ public class TestController {
         result.setLocation("/api/test");
 
         result.setMessage("该Api用于开发时测试");
+
+        // 在以下区域测试代码
+
+        // 在以上区域测试代码
 
         Logger.Debug(this.getClass(), "Controller:Test", "Request Call");
         return ResponseEntity.ok().body(result);
