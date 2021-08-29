@@ -16,6 +16,9 @@ public class PhigrosDbProjectApiApplication {
 		ConfigurableApplicationContext cac =
 				SpringApplication.run(PhigrosDbProjectApiApplication.class, args);
 
+		// var
+		boolean setLoggerLevelFlag = false;
+
 		// check args
 		if (args.length != 0) {
 			for (int i = 0; i < args.length; i++) {
@@ -23,6 +26,9 @@ public class PhigrosDbProjectApiApplication {
 				if (args[i].startsWith("--dbpath:")) { // --dbpath:xxx
 					String path = args[i].substring(9);
 					Setup.setDatabasePath(path);
+				}else if (args[i].startsWith("--logger.level:")) { // --dbpath:xxx
+					Logger.setLoggerLevel(args[i].substring(15));
+					setLoggerLevelFlag = true;
 				}
 			}
 		}else {
@@ -30,7 +36,8 @@ public class PhigrosDbProjectApiApplication {
 		}
 
 		// Start Info
-		Logger.setLoggerLevel(loggerLevel.Info);
+		if (!setLoggerLevelFlag)
+			Logger.setLoggerLevel(loggerLevel.Info);
 		Logger.Info(Logger.class, "loggerLevel", Logger.getLoggerLevel().toString());
 		Logger.Info(PhigrosDbProjectApiApplication.class, "", "=====================");
 		Logger.Info(PhigrosDbProjectApiApplication.class, "PhigrosDB-Project", "Api");

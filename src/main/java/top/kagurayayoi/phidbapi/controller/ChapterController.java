@@ -9,6 +9,7 @@ import top.kagurayayoi.phidbapi.conf.Setup;
 import top.kagurayayoi.phidbapi.entities.AjaxResult;
 import top.kagurayayoi.phidbapi.entities.ExceptionResult;
 import top.kagurayayoi.phidbapi.entities.GeneralEntity;
+import javax.servlet.http.HttpServletResponse;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
@@ -24,10 +25,19 @@ public class ChapterController {
 
     @GetMapping({"/api/chapter/{ChapterName}", "/api/Chapter/{ChapterName}"})
     @ResponseBody
-    public ResponseEntity<AjaxResult> Chapter(@PathVariable("ChapterName") String ChapterName) {
+    public ResponseEntity<AjaxResult> Chapter(@PathVariable("ChapterName") String ChapterName, HttpServletResponse response) {
         this.Init();
         result.setLocation("/api/chapter/" + ChapterName);
         try {
+            switch (ChapterName.toLowerCase()) {
+                case "one":
+                case "two":
+                case "three":
+                    response.sendRedirect("/api/chapter/legacy");
+                    return ResponseEntity.status(301).body(result.setCode(HttpStatus.MOVED_PERMANENTLY).setMessage("Moved"));
+                default:
+                    break;
+            }
             helper.connection();
             ResultSet rs = helper.selectAll("main.'Chapter-" + ChapterName+ "'", null);
             while (rs.next()){
