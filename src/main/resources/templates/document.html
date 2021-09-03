@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>PhigrosDB-project-Api Document</title>
+    <script type="text/javascript" th:src="@{/static/js/app.js}"></script>
+</head>
+<body>
+    <h3>PhigrosDB project API Document</h3>
+	<p>Version: 1.1.0 SNAPSHOT</p>
+    <hr>
+    <p>BaseUrl: <strong>/api</strong> </p>
+    Controller: <select id="controllerSelect" onclick="init()" 
+						onchange="OnChangeEventHandler()"></select>
+	<hr>
+	RequestUrl: 
+	<input id="requestUrl" type="text" value="" readonly="readonly"/> <br><br>
+	Method: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	<input id="requestMethod" type="text" value="" readonly="readonly"/> <br><br>
+    <div id="requestParamsTable"></div>
+	<h2>API description</h2>
+	<hr>
+	<div id="apidescription">
+		&nbsp;&nbsp;&nbsp;&nbsp; No controller selected.
+	</div>
+</body>
+</html>

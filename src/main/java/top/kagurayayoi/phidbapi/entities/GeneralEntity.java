@@ -8,11 +8,7 @@ public class GeneralEntity extends BaseEntity{
 
     public final static String[] columnName = new String[]{"id", "Name", "EZ", "HD", "IN", "AT", "Legacy"};
     private String Name;
-    private Object EZ;
-    private Object HD;
-    private Object IN;
-    private Object AT;
-    private Object Legacy;
+    private Object EZ, HD, IN, AT, Legacy;
 
     @JsonProperty(index = 2)
     public String getName() {

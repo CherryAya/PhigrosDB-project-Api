@@ -3,13 +3,17 @@ package top.kagurayayoi.phidbapi;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.util.ResourceUtils;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
 import top.kagurayayoi.logger.Logger;
 import top.kagurayayoi.logger.loggerLevel;
 import top.kagurayayoi.phidbapi.conf.Setup;
 
 @SpringBootApplication
-public class PhigrosDbProjectApiApplication {
+public class PhigrosDbProjectApiApplication extends WebMvcConfigurationSupport {
 
+	// SpringBoot Application Entry Point
 	public static void main(String[] args) {
 
 		// SpringBoot Run
@@ -59,8 +63,16 @@ public class PhigrosDbProjectApiApplication {
 			Logger.Info(PhigrosDbProjectApiApplication.class, "DatabasePath", Setup.getDatabasePath());
 			Logger.Info(PhigrosDbProjectApiApplication.class, "By", "CherryAya");
 			Logger.Info(PhigrosDbProjectApiApplication.class, "", "=====================");
+			Logger.Info(PhigrosDbProjectApiApplication.class, "API", "-------> http://localhost:8080/api");
+			Logger.Info(PhigrosDbProjectApiApplication.class, "Document", "--> http://localhost:8080/api/doc");
 		}
 
 	}
 
+	@Override
+	protected void addResourceHandlers(ResourceHandlerRegistry registry) {
+		registry.addResourceHandler("/**").addResourceLocations(ResourceUtils.CLASSPATH_URL_PREFIX + "/templates/");
+		registry.addResourceHandler("/static/**").addResourceLocations(ResourceUtils.CLASSPATH_URL_PREFIX + "/static/");
+		super.addResourceHandlers(registry);
+	}
 }
