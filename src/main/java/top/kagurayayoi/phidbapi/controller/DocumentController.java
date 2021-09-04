@@ -9,8 +9,8 @@ public class DocumentController {
 
     @RequestMapping("/api/doc")
     public String Document() {
-        Logger.Info(this.getClass(),"Api-Document", "Request Call");
-        return "/document";
+        Logger.Info(this.getClass(),"API-Document", "Request Call");
+        return "document";
     }
 
 }
