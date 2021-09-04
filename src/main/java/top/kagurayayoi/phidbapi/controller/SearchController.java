@@ -30,9 +30,9 @@ public class SearchController {
         result.setLocation("/api/search");
         if (Objects.equals(Song, "")) {
             result.setMessage("Song is null");
-            result.setCode(HttpStatus.NOT_FOUND);
+            result.setCode(HttpStatus.BAD_REQUEST);
             Logger.Info(this.getClass(), "Controller:Chapter", "Request Call");
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(result);
+            return ResponseEntity.badRequest().body(result);
         }
         try {
             helper.connection();
